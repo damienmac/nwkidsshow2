@@ -1,0 +1,35 @@
+application: nwkidsshow
+version: 4
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /favicon.ico
+  static_files: nwkidsshow/static/images/favicon.ico
+  upload: nwkidsshow/static/images/favicon.ico
+  expiration: '7d'
+
+- url: /static/css
+  static_dir: nwkidsshow/static/css
+  expiration: '1d'
+
+- url: /static/images
+  static_dir: nwkidsshow/static/images
+  expiration: '1d'
+
+- url: /static/admin
+  static_dir: nwkidsshow/static/admin
+  expiration: '1d'
+
+- url: /.*
+#  script: main.py
+  script: main.app
+
+libraries:
+- name: django
+  version: "1.4"
+
+builtins:
+- django_wsgi: on
