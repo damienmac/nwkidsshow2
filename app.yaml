@@ -33,3 +33,4 @@ libraries:
 
 builtins:
 - django_wsgi: on
+
