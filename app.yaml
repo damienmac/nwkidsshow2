@@ -1,5 +1,5 @@
 application: nwkidsshow
-version: 5
+version: 6
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -29,7 +29,7 @@ handlers:
 
 libraries:
 - name: django
-  version: "1.4"
+  version: "1.5"
 
 builtins:
 - django_wsgi: on
