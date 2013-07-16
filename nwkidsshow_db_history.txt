@@ -1,0 +1,113 @@
+
+VERSION #6 changes:
+
+ALTER TABLE `nwkidsshow_registration` ADD COLUMN `room` integer;
+
+
+CURRENT MANAGE.PY SQLALL:
+
+runnerw.exe C:\Python27\python.exe "C:\Program Files (x86)\JetBrains\PyCharm 2.7.1\helpers\pycharm\django_manage.py" sqlall nwkidsshow C:/Users/Damien/PycharmProjects/nwkidsshow
+BEGIN;
+CREATE TABLE `nwkidsshow_exhibitor` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `user_id` integer NOT NULL UNIQUE,
+    `company` varchar(50) NOT NULL,
+    `website` varchar(200) NOT NULL,
+    `address` varchar(50) NOT NULL,
+    `address2` varchar(50) NOT NULL,
+    `city` varchar(60) NOT NULL,
+    `state` varchar(2) NOT NULL,
+    `zip` varchar(7) NOT NULL,
+    `phone` varchar(20) NOT NULL,
+    `fax` varchar(20) NOT NULL,
+    `must_change_password` bool NOT NULL,
+    `lines` longtext NOT NULL
+)
+;
+ALTER TABLE `nwkidsshow_exhibitor` ADD CONSTRAINT `user_id_refs_id_16269870` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+CREATE TABLE `nwkidsshow_retailer` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `user_id` integer NOT NULL UNIQUE,
+    `company` varchar(50) NOT NULL,
+    `website` varchar(200) NOT NULL,
+    `address` varchar(50) NOT NULL,
+    `address2` varchar(50) NOT NULL,
+    `city` varchar(60) NOT NULL,
+    `state` varchar(2) NOT NULL,
+    `zip` varchar(7) NOT NULL,
+    `phone` varchar(20) NOT NULL,
+    `fax` varchar(20) NOT NULL,
+    `must_change_password` bool NOT NULL
+)
+;
+ALTER TABLE `nwkidsshow_retailer` ADD CONSTRAINT `user_id_refs_id_a1c254b5` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+CREATE TABLE `nwkidsshow_show_exhibitors` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `show_id` integer NOT NULL,
+    `exhibitor_id` integer NOT NULL,
+    UNIQUE (`show_id`, `exhibitor_id`)
+)
+;
+ALTER TABLE `nwkidsshow_show_exhibitors` ADD CONSTRAINT `exhibitor_id_refs_id_a756de8f` FOREIGN KEY (`exhibitor_id`) REFERENCES `nwkidsshow_exhibitor` (`id`);
+CREATE TABLE `nwkidsshow_show_retailers` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `show_id` integer NOT NULL,
+    `retailer_id` integer NOT NULL,
+    UNIQUE (`show_id`, `retailer_id`)
+)
+;
+ALTER TABLE `nwkidsshow_show_retailers` ADD CONSTRAINT `retailer_id_refs_id_b58d8dd9` FOREIGN KEY (`retailer_id`) REFERENCES `nwkidsshow_retailer` (`id`);
+CREATE TABLE `nwkidsshow_show` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `name` varchar(50) NOT NULL,
+    `late_date` date NOT NULL,
+    `closed_date` date NOT NULL,
+    `start_date` date NOT NULL,
+    `end_date` date NOT NULL,
+    `registration_fee` double precision NOT NULL,
+    `assistant_fee` double precision NOT NULL,
+    `late_fee` double precision NOT NULL,
+    `rack_fee` double precision NOT NULL
+)
+;
+ALTER TABLE `nwkidsshow_show_exhibitors` ADD CONSTRAINT `show_id_refs_id_17e50e04` FOREIGN KEY (`show_id`) REFERENCES `nwkidsshow_show` (`id`);
+ALTER TABLE `nwkidsshow_show_retailers` ADD CONSTRAINT `show_id_refs_id_2def6c87` FOREIGN KEY (`show_id`) REFERENCES `nwkidsshow_show` (`id`);
+CREATE TABLE `nwkidsshow_registration` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `show_id` integer NOT NULL,
+    `exhibitor_id` integer NOT NULL,
+    `num_exhibitors` smallint NOT NULL,
+    `num_assistants` smallint NOT NULL,
+    `num_racks` smallint NOT NULL,
+    `num_tables` smallint NOT NULL,
+    `is_late` bool NOT NULL,
+    `date_registered` date NOT NULL,
+    `registration_total` double precision NOT NULL,
+    `assistant_total` double precision NOT NULL,
+    `rack_total` double precision NOT NULL,
+    `late_total` double precision NOT NULL,
+    `total` double precision NOT NULL,
+    `has_paid` bool NOT NULL,
+    `room` integer
+)
+;
+ALTER TABLE `nwkidsshow_registration` ADD CONSTRAINT `exhibitor_id_refs_id_a10afe42` FOREIGN KEY (`exhibitor_id`) REFERENCES `nwkidsshow_exhibitor` (`id`);
+ALTER TABLE `nwkidsshow_registration` ADD CONSTRAINT `show_id_refs_id_d4009260` FOREIGN KEY (`show_id`) REFERENCES `nwkidsshow_show` (`id`);
+CREATE TABLE `nwkidsshow_retailerregistration` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `show_id` integer NOT NULL,
+    `retailer_id` integer NOT NULL,
+    `num_attendees` smallint UNSIGNED NOT NULL,
+    `days_attending` varchar(7) NOT NULL
+)
+;
+ALTER TABLE `nwkidsshow_retailerregistration` ADD CONSTRAINT `retailer_id_refs_id_98363707` FOREIGN KEY (`retailer_id`) REFERENCES `nwkidsshow_retailer` (`id`);
+ALTER TABLE `nwkidsshow_retailerregistration` ADD CONSTRAINT `show_id_refs_id_c583207b` FOREIGN KEY (`show_id`) REFERENCES `nwkidsshow_show` (`id`);
+CREATE INDEX `nwkidsshow_registration_1ed4440f` ON `nwkidsshow_registration` (`show_id`);
+CREATE INDEX `nwkidsshow_registration_01c5736e` ON `nwkidsshow_registration` (`exhibitor_id`);
+CREATE INDEX `nwkidsshow_retailerregistration_1ed4440f` ON `nwkidsshow_retailerregistration` (`show_id`);
+CREATE INDEX `nwkidsshow_retailerregistration_64f72e30` ON `nwkidsshow_retailerregistration` (`retailer_id`);
+
+COMMIT;
+
+Process finished with exit code 0
