@@ -1,10 +1,14 @@
 
-VERSION #6 changes:
+VERSION #7 changes:
+ALTER TABLE `nwkidsshow_registration` ADD COLUMN `booked_room` bool NOT NULL default false;
 
+
+
+VERSION #6 changes:
 ALTER TABLE `nwkidsshow_registration` ADD COLUMN `room` integer;
 
 
-CURRENT MANAGE.PY SQLALL:
+CURRENT MANAGE.PY SQLALL: (Version #7)
 
 runnerw.exe C:\Python27\python.exe "C:\Program Files (x86)\JetBrains\PyCharm 2.7.1\helpers\pycharm\django_manage.py" sqlall nwkidsshow C:/Users/Damien/PycharmProjects/nwkidsshow
 BEGIN;
@@ -88,6 +92,7 @@ CREATE TABLE `nwkidsshow_registration` (
     `late_total` double precision NOT NULL,
     `total` double precision NOT NULL,
     `has_paid` bool NOT NULL,
+    `booked_room` bool NOT NULL,
     `room` integer
 )
 ;
