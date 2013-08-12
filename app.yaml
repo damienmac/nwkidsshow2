@@ -11,6 +11,10 @@ handlers:
   upload: nwkidsshow/static/images/favicon.ico
   expiration: '7d'
 
+- url: /robots.txt
+  static_files: nwkidsshow/robots.txt
+  upload: nwkidsshow/robots.txt
+
 - url: /static/css
   static_dir: nwkidsshow/static/css
   expiration: '1d'
