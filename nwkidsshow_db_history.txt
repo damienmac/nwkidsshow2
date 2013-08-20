@@ -1,3 +1,5 @@
+VERSION #9 changes:
+ALTER TABLE `nwkidsshow_show` ADD COLUMN `venue` varchar(50) NOT NULL default 'nwkidsshow';
 
 VERSION #7 changes:
 ALTER TABLE `nwkidsshow_registration` ADD COLUMN `booked_room` bool NOT NULL default false;
