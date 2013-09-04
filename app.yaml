@@ -9,9 +9,9 @@ handlers:
 
 - url: /favicon.ico
 #  static_files: nwkidsshow/static/images/favicon-nwks.ico
-  static_files: nwkidsshow/static/images/favicon-caks.ico
+  static_files: nwkidsshow/static/images/favicon-cks.ico
 #  upload: nwkidsshow/static/images/favicon-nwks.ico
-  upload: nwkidsshow/static/images/favicon-caks.ico
+  upload: nwkidsshow/static/images/favicon-cks.ico
   expiration: '7d'
 
 - url: /robots.txt
