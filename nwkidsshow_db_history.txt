@@ -1,16 +1,18 @@
+VERSION #12 changes:
+ALTER TABLE `nwkidsshow_registration` ADD COLUMN `num_rooms` smallint NOT NULL default 0;
+ALTER TABLE `nwkidsshow_registration` ADD COLUMN `bed_type` varchar(50) NOT NULL default 'queen';
+
 VERSION #9 changes:
 ALTER TABLE `nwkidsshow_show` ADD COLUMN `venue` varchar(50) NOT NULL default 'nwkidsshow';
 
 VERSION #7 changes:
 ALTER TABLE `nwkidsshow_registration` ADD COLUMN `booked_room` bool NOT NULL default false;
 
-
-
 VERSION #6 changes:
 ALTER TABLE `nwkidsshow_registration` ADD COLUMN `room` integer;
 
 
-CURRENT MANAGE.PY SQLALL: (Version #7)
+CURRENT MANAGE.PY SQLALL: (Version #12)
 
 runnerw.exe C:\Python27\python.exe "C:\Program Files (x86)\JetBrains\PyCharm 2.7.1\helpers\pycharm\django_manage.py" sqlall nwkidsshow C:/Users/Damien/PycharmProjects/nwkidsshow
 BEGIN;
@@ -66,6 +68,7 @@ ALTER TABLE `nwkidsshow_show_retailers` ADD CONSTRAINT `retailer_id_refs_id_b58d
 CREATE TABLE `nwkidsshow_show` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `name` varchar(50) NOT NULL,
+    `venue` varchar(50) NOT NULL,
     `late_date` date NOT NULL,
     `closed_date` date NOT NULL,
     `start_date` date NOT NULL,
@@ -86,6 +89,8 @@ CREATE TABLE `nwkidsshow_registration` (
     `num_assistants` smallint NOT NULL,
     `num_racks` smallint NOT NULL,
     `num_tables` smallint NOT NULL,
+    `num_rooms` smallint NOT NULL,
+    `bed_type` varchar(50) NOT NULL,
     `is_late` bool NOT NULL,
     `date_registered` date NOT NULL,
     `registration_total` double precision NOT NULL,
@@ -118,3 +123,4 @@ CREATE INDEX `nwkidsshow_retailerregistration_64f72e30` ON `nwkidsshow_retailerr
 COMMIT;
 
 Process finished with exit code 0
+
