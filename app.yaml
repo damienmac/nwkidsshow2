@@ -1,5 +1,5 @@
-application: nwkidsshow
-#application: cakidsshow
+#application: nwkidsshow
+application: cakidsshow
 version: 13
 runtime: python27
 api_version: 1
@@ -7,15 +7,40 @@ threadsafe: true
 
 handlers:
 
-- url: /favicon.ico
-  static_files: nwkidsshow/static/images/favicon-nwks.ico
-  upload:       nwkidsshow/static/images/favicon-nwks.ico
-  expiration: '7d'
-
 #- url: /favicon.ico
-#  static_files: nwkidsshow/static/images/favicon-cks.ico
-#  upload:       nwkidsshow/static/images/favicon-cks.ico
+#  static_files: nwkidsshow/static/images/favicon-nwks.ico
+#  upload:       nwkidsshow/static/images/favicon-nwks.ico
 #  expiration: '7d'
+#- url: /apple-touch-icon-57x57(?:\-precomposed)?\.png
+#  static_files: nwkidsshow/static/images/NWKS_color-square-57.png
+#  upload:       nwkidsshow/static/images/NWKS_color-square-57.png
+#- url: /apple-touch-icon-76x76(?:\-precomposed)?\.png
+#  static_files: nwkidsshow/static/images/NWKS_color-square-76.png
+#  upload:       nwkidsshow/static/images/NWKS_color-square-76.png
+#- url: /apple-touch-icon-120x120(?:\-precomposed)?\.png
+#  static_files: nwkidsshow/static/images/NWKS_color-square-76.png
+#  upload:       nwkidsshow/static/images/NWKS_color-square-76.png
+#- url: /apple-touch-icon-152x152(?:\-precomposed)?\.png
+#  static_files: nwkidsshow/static/images/NWKS_color-square-76.png
+#  upload:       nwkidsshow/static/images/NWKS_color-square-76.png
+
+
+- url: /favicon.ico
+  static_files: nwkidsshow/static/images/favicon-cks.ico
+  upload:       nwkidsshow/static/images/favicon-cks.ico
+  expiration: '7d'
+- url: /apple-touch-icon-57x57(?:\-precomposed)?\.png
+  static_files: nwkidsshow/static/images/CKS_color-square-57.png
+  upload:       nwkidsshow/static/images/CKS_color-square-57.png
+- url: /apple-touch-icon-76x76(?:\-precomposed)?\.png
+  static_files: nwkidsshow/static/images/CKS_color-square-76.png
+  upload:       nwkidsshow/static/images/CKS_color-square-76.png
+- url: /apple-touch-icon-120x120(?:\-precomposed)?\.png
+  static_files: nwkidsshow/static/images/CKS_color-square-76.png
+  upload:       nwkidsshow/static/images/CKS_color-square-76.png
+- url: /apple-touch-icon-152x152(?:\-precomposed)?\.png
+  static_files: nwkidsshow/static/images/CKS_color-square-76.png
+  upload:       nwkidsshow/static/images/CKS_color-square-76.png
 
 - url: /robots.txt
   static_files: nwkidsshow/robots.txt
