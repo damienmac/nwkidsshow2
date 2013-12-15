@@ -7,6 +7,7 @@ threadsafe: true
 
 handlers:
 
+##### NW KIDS SHOW #####
 - url: /favicon.ico
   static_files: nwkidsshow/static/images/favicon-nwks.ico
   upload:       nwkidsshow/static/images/favicon-nwks.ico
@@ -14,7 +15,9 @@ handlers:
 - url: /apple-touch-icon-(\d+)x(\d+)(?:\-precomposed)?\.png
   static_files: nwkidsshow/static/images/NWKS_color-square-\1.png
   upload:       nwkidsshow/static/images/apple\-touch\-icon\-(.*)\.png
+########################
 
+##### CA KIDS SHOW #####
 #- url: /favicon.ico
 #  static_files: nwkidsshow/static/images/favicon-cks.ico
 #  upload:       nwkidsshow/static/images/favicon-cks.ico
@@ -22,6 +25,7 @@ handlers:
 #- url: /apple-touch-icon-(\d+)x(\d+)(?:\-precomposed)?\.png
 #  static_files: nwkidsshow/static/images/CKS_color-square-\1.png
 #  upload:       nwkidsshow/static/images/apple\-touch\-icon\-(.*)\.png
+########################
 
 - url: /robots.txt
   static_files: nwkidsshow/robots.txt
